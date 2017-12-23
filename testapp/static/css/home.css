@@ -1,0 +1,16 @@
+#header {
+    height: 85px;
+    padding-top: 20px;
+    background-image: url("../header.jpg");
+}
+
+#logout-div {
+    text-align: right;
+    vertical-align: center;
+}
+
+#title-div {
+    text-align: left;
+    vertical-align: center;
+}
+
