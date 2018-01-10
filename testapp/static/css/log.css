@@ -1,0 +1,50 @@
+#header {
+    height: 85px;
+    padding-top: 20px;
+    background-image: url("../header.jpg");
+}
+
+#logout-div {
+    text-align: right;
+    vertical-align: center;
+}
+
+#title-div {
+    text-align: left;
+    vertical-align: center;
+}
+
+body {
+    background-image:url("../bg.jpg")
+}
+
+#list {
+    text-align: center;
+}
+
+.list_item {
+    margin-top: 5px;
+    align-items: center;
+}
+
+.item_header {
+    margin: 2px;
+    text-align: left;
+    vertical-align: middle;
+    padding: 3px;
+}
+
+.item_content {
+    margin: 2px;
+    text-align: left;
+    vertical-align: middle;
+    padding: 3px;
+}
+
+p {
+
+    /*overflow: hidden;*/
+  text-overflow: ellipsis;
+    word-wrap: break-word
+
+}

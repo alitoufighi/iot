@@ -36,13 +36,23 @@ def home(request):
             return render(request, 'testapp/login.html', {'err':None})
 def log(request):
     if request.method == 'GET':
-        if 'username' in request.session:
-            # messages = Message.objects.all()
+        if request.session['username']:
+            messages = Message.objects.all()
             # messages_str = messages.__str__()
-            data = serializers.serialize("json", Message.objects.all())
+            # data = serializers.serialize("json", Message.objects.all())
 
-            # return render(request, 'testapp/log.html', {'data': data})
-            return HttpResponse(data, content_type="application/json")
+            return render(request, 'testapp/log.html', {'data': messages})
+            # return HttpResponse(data, content_type="application/json")
+        else:
+            return redirect('home')
+    elif request.method == 'POST':
+        if 'logout' in request.POST:
+            request.session['username'] = None
+            return redirect('home')
+        elif 'log' in request.POST:
+            return redirect('log')
+        else:
+            return redirect('home')
 # def logout(request):
 #     request.session['username'] = None
 #     return render(request, 'testapp/login.html')
