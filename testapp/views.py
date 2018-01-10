@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
 from django.shortcuts import render, HttpResponse, redirect
 from .models import Message
 from django.core import serializers
-# Create your views here.
+
 def home(request):
     if request.method == 'POST':
         if 'logout' in request.POST:
@@ -33,16 +32,13 @@ def home(request):
         if username != None:
             return render(request, 'testapp/home.html', {'msg': None})
         else:
-            return render(request, 'testapp/login.html', {'err':None})
+            return render(request, 'testapp/login.html', {'err': None})
+
 def log(request):
     if request.method == 'GET':
-        if 'username' in request.session:
-            # messages = Message.objects.all()
-            # messages_str = messages.__str__()
+        un = request.session.get('username', None)
+        if un != None:
             data = serializers.serialize("json", Message.objects.all())
-
-            # return render(request, 'testapp/log.html', {'data': data})
             return HttpResponse(data, content_type="application/json")
-# def logout(request):
-#     request.session['username'] = None
-#     return render(request, 'testapp/login.html')
+        else:
+            return render(request, 'testapp/login.html', {'err': 'You are not logged in. Please Log In First To See The Messages.'})
