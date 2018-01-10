@@ -14,3 +14,6 @@
     vertical-align: center;
 }
 
+body {
+    background-image:url("../bg.jpg")
+}

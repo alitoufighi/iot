@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse, redirect
 from .models import Message
 from django.core import serializers
 # Create your views here.
@@ -10,6 +10,8 @@ def home(request):
         if 'logout' in request.POST:
             request.session['username'] = None
             return render(request, 'testapp/login.html')
+        elif 'log' in request.POST:
+            return redirect('log')
         elif 'explanation' in request.POST and 'title' in request.POST:
             print(request.POST)
             explanation=request.POST['explanation']
@@ -38,8 +40,9 @@ def log(request):
             # messages = Message.objects.all()
             # messages_str = messages.__str__()
             data = serializers.serialize("json", Message.objects.all())
-            return render(request, 'testapp/log.html', {'data': data})
 
+            # return render(request, 'testapp/log.html', {'data': data})
+            return HttpResponse(data, content_type="application/json")
 # def logout(request):
 #     request.session['username'] = None
 #     return render(request, 'testapp/login.html')
