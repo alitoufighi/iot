@@ -1,9 +1,10 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
-<head></head>
+<head>
     <meta charset="UTF-8">
     <title>Temperature Monitor</title>
+    <link rel="icon" href={% static 'temperature.png' %}>
     <link rel="stylesheet" href={% static 'css/home.css' %}>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
@@ -33,36 +34,37 @@
             <div class="col-md-2"></div>
 
             <div class="col-md-4" id="description">
-                <p>
-                    This project was developed by Hossein Soltanloo, Mohammad Ali Toufighi and Saeid Zangeneh in last days of 2017. They're members of University of Tehran ACM Student Chapter and their cooperation in doing projects together caused them to be a famous group in their university.
-                </p>
+                <p> <h6> This should show the temprature diagram </h6> </p>
+
+                <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/360868/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+
             </div>
 
             <div class="col-md-4" id="members">
                 <div class="row ">
                     <div class="col-md-2">
-                        <img width="100" height="100" style="border-radius: 50%; border: black; border-width: thick" src={% static 'avatars/Hossein.jpg'%} >
+                        <img id="avatar" src={% static 'avatars/Ali.jpg'%} >
                     </div>
-                    <div class="col-md-7" style="text-align: center;">
-                        <p>Hossein Soltanloo</p>
-                    </div>
-                </div>
-                <br>
-                <div class="row ">
-                    <div class="col-md-2">
-                        <img width="100" height="100" style="border-radius: 50%" src={% static 'avatars/Ali.jpg'%} >
-                    </div>
-                    <div class="col-md-7" style="text-align: center; vertical-align: middle;"   >
+                    <div class="col-md-7" id ="avatar_desc">
                         <p>Mohammad Ali Toufighi</p>
                     </div>
                 </div>
                 <br>
                 <div class="row ">
                     <div class="col-md-2">
-                        <img width="100" height="100" style="border-radius: 50%" src={% static 'avatars/Saeid.jpg'%} >
+                        <img img id="avatar" src={% static 'avatars/Hossein.jpg'%} >
                     </div>
-                    <div class="col-md-7" style="text-align: center; vertical-align: middle; ">
-                        <p>Saeid Zangeneh</p>
+                    <div class="col-md-7" id ="avatar_desc">
+                        <p>Hossein Soltanloo</p>
+                    </div>
+                </div>
+                <br>
+                <div class="row ">
+                    <div class="col-md-2">
+                        <img id="avatar" src={% static 'avatars/Saeid.jpg'%} >
+                    </div>
+                    <div class="col-md-7" id ="avatar_desc">
+                        <p>Saeed Zangeneh</p>
                     </div>
                 </div>
 
@@ -70,33 +72,36 @@
 
             <div class="col-md-2"></div>
         </div>
-        <br>
         <div class="row" id="content">
             <div class="col-md-2"></div>
 
-            <div class="col-md-4" id="diagram">
-                <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/360868/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
-            </div>
 
             <div class="col-md-4" id="log-form">
-                <form method="post">{% csrf_token %}
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input class="form-control" id="title" name="title" placeholder="Title">
-                    </div>
 
-                    <div class="form-group">
-                        <label for="explanation">Explanation</label>
-                        <textarea class="form-control" name="explanation" id="explanation" placeholder="Explanation"></textarea>
-                    </div>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#formMessage" aria-expanded="false" aria-controls="collapseExample">
+                    Commit a message !
+                </button>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="collapse" id="formMessage">
+                    <form method="post">{% csrf_token %}
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input class="form-control" id="title" name="title" placeholder="Title">
+                        </div>
 
-                    {% if msg %}
-                        <hr>
-                        {{ msg }}
-                    {% endif %}
-                </form>
+                        <div class="form-group">
+                            <label for="explanation">Explanation</label>
+                            <textarea class="form-control" name="explanation" id="explanation" placeholder="Explanation"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+
+                {% if msg %}
+                    <hr>
+                    {{ msg }}
+                {% endif %}
             </div>
 
             <div class="col-md-2"></div>

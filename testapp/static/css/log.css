@@ -24,18 +24,33 @@ body {
     text-justify: distribute;
 }
 
-#avatar_desc {
+#list {
     text-align: center;
+}
+
+.list_item {
+    margin-top: 5px;
+    align-items: center;
+}
+
+.item_header {
+    margin: 2px;
+    text-align: left;
     vertical-align: middle;
-    padding-top: 30px;
+    padding: 3px;
 }
 
-#avatar {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
+.item_content {
+    margin: 2px;
+    text-align: left;
+    vertical-align: middle;
+    padding: 3px;
 }
 
-#formMessage {
-    margin-top: 3%;
+p {
+
+    /*overflow: hidden;*/
+  text-overflow: ellipsis;
+    word-wrap: break-word
+
 }
